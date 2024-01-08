@@ -29,7 +29,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" id="login_form">
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address">
@@ -45,7 +45,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <a href="index.html" class="btn btn-primary btn-block">Login</a>
+                      <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                     <hr>
                     <a href="index.html" class="btn btn-google btn-block">
@@ -70,10 +70,12 @@
     </div>
   </div>
   <!-- Login Content -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.min.js"></script>
+  <script src="js/ruang-admin.js"></script>
 </body>
 
 </html>
