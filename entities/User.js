@@ -11,7 +11,7 @@ class User extends BaseEntity {
     }
 
     static async findByEmail(email) {
-        const user = await knex.table('users').where('email', email)
+        const user = await knex.table('users').where('email', email).first()
 
         return new User(user.email, user.password)
     }

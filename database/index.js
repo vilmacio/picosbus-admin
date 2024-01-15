@@ -3,9 +3,8 @@ import knex from "knex";
 const sqlite = knex({
     client: 'sqlite3',
     connection: {
-        filename: "./data.sqlite"
-    },
-    debug: true
+        filename: "./database/data.sqlite"
+    }
 });
 
 export default sqlite

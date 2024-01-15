@@ -1,34 +1,18 @@
-async function login(e) {
-  e.preventDefault();
-  console.log('login')
-  const emailInput = document.getElementById('exampleInputEmail')
-  const passwordInput = document.getElementById('exampleInputPassword')
-  const email = emailInput.value
-  const password = passwordInput.value
-  console.log('email', email)
-  console.log('password', password)
-
-  const fetchResponse = await fetch('http://localhost:3000/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password })
-  })
-  
-  const data = await fetchResponse.json()
-
-  const token = data.token
-
-  localStorage.setItem('pb-token', token)
-
-  console.log('data', data)
-}
 
 (function ($) {
   "use strict"; // Start of use strict
 
-  document.getElementById('login_form').addEventListener('submit', login)
+  document.addEventListener("DOMContentLoaded", function() {
+    if (!window.location.pathname.includes('login')) {
+      console.log('verificando token...')
+      const token = localStorage.getItem('pb-token')
+      if (token) {
+        console.log('tem token')
+      } else {
+        window.location.href = '/login.html'
+      }
+    }
+  });
 
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {

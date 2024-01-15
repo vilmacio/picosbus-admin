@@ -1,6 +1,7 @@
 import express, { json } from 'express'
 import jwt from 'jsonwebtoken'
 import cors from 'cors'
+import path from 'path'
 import sqlite from './database/index.js';
 
 const app = express();
@@ -9,9 +10,10 @@ app.use(json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
+app.use(express.static(path.join(path.resolve(''), 'view')))
+
 app.get('/', (req, res) => {
-    console.log('rota raiz')
-    res.send('<h1>Aqui vai ficar o front</h1>')
+    res.sendFile(path.join(path.resolve(''), 'view', 'index.html'));
 })
 
 app.post('/api/login', async (req, res) => {
@@ -21,9 +23,9 @@ app.post('/api/login', async (req, res) => {
 
     const user = await sqlite.table('users').where('email', email).first()
 
-    if (!user) return res.status(400).json({ response: 'Usuário não existe' })
+    if (!user) return res.status(400).json({ error: 'Usuário não existe' })
 
-    // if (user.password !== password) return res.status(400).json({ response: 'Senha incorreta' })
+    if (user.password !== password) return res.status(400).json({ error: 'Senha incorreta' })
 
     const token = jwt.sign({ email }, 'PICOS_BUS')
 
