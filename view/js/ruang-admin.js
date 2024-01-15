@@ -15,6 +15,7 @@ async function login(e) {
     },
     body: JSON.stringify({ email, password })
   })
+  
   const data = await fetchResponse.json()
 
   const token = data.token

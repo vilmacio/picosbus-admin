@@ -1,16 +1,9 @@
 import express, { json } from 'express'
 import jwt from 'jsonwebtoken'
 import cors from 'cors'
+import sqlite from './database/index.js';
 
 const app = express();
-
-
-function checkIfUserExist() {
-    return {
-        email: 'vilmacio@gmail.com',
-        password: '1234567'
-    }
-}
 
 app.use(json())
 app.use(express.urlencoded({ extended: true }));
@@ -21,19 +14,16 @@ app.get('/', (req, res) => {
     res.send('<h1>Aqui vai ficar o front</h1>')
 })
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
     const body = req.body
 
     const { email, password } = body
 
-    console.log('req', req)
-    console.log('body', body)
-
-    const user = checkIfUserExist()
+    const user = await sqlite.table('users').where('email', email).first()
 
     if (!user) return res.status(400).json({ response: 'Usuário não existe' })
 
-    if (user.password !== password) return res.status(400).json({ response: 'Senha incorreta' })
+    // if (user.password !== password) return res.status(400).json({ response: 'Senha incorreta' })
 
     const token = jwt.sign({ email }, 'PICOS_BUS')
 
