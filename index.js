@@ -32,4 +32,10 @@ app.post('/api/login', async (req, res) => {
     return res.json({ token })
 })
 
+app.get('/rotas', async (req, res) => {
+    const rotas = await sqlite.table('rotas').returning('*')
+
+    return rotas
+})
+
 app.listen(3000, () => console.log('Rodandoo na 3000'));
