@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>RA Transporte</title>
+  <title>RA - Rota</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Criar rota</span></a>
       </li>
-      
+
       <hr class="sidebar-divider">
       <div class="version" id="version-ruangadmin"></div>
     </ul>
@@ -58,8 +58,9 @@
                 aria-labelledby="searchDropdown">
                 <form class="navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-1 small" placeholder="O que você está procurando?"
-                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                    <input type="text" class="form-control bg-light border-1 small"
+                      placeholder="O que você está procurando?" aria-label="Search" aria-describedby="basic-addon2"
+                      style="border-color: #3f51b5;">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -233,96 +234,92 @@
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Resumo</h1>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Inicio</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Resumo</li>
-            </ol>
-          </div>
-
-          <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
-  
-            <!-- Earnings (Annual) Card Example -->
-            
-            <!-- New User Card Example -->
-            
-            <!-- Pending Requests Card Example -->
-
-            <!-- Area Chart -->
-            <!-- Pie Chart -->
-            <!-- Invoice Example -->
-            <div class="col-xl-8 col-lg-7 mb-4">
-              <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Rotas</h6>
-                  <a class="m-0 float-right btn btn-danger btn-sm" href="#">Criar nova <i
-                      class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="table-responsive">
-                  <table id="tabela_rotas" class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th>Rota ID</th>
-                        <th>Cidade</th>
-                        <th>Origem</th>
-                        <th>Destino</th>
-                        <th>Status</th>
-                        <th>Ação</th>
-                      </tr>
-                    </thead>
-                    <tbody id="linhas-rotas">
-                      
-                    </tbody>
-                  </table>
-                </div>
-                <div class="card-footer"></div>
-              </div>
+          <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h4 id="form_title" class="m-0 font-weight-bold text-primary">Cadastrar rota</h4>
             </div>
-            <!-- Message From Customer-->
-            <div class="col-xl-4 col-lg-5 ">
-              <div class="card">
-                <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Últimas notícias</h6>
-                </div>
-                <div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Câmara Municipal Debate Problemas Crônicos no Transporte Coletivo de Picos-PI.</div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Picos 40 graus · 3h</div>
-                    </a>
+            <div class="card-body">
+              <form id="rota_form">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Nº Identificador</label>
+                      <input class="form-control" disabled id="rota_id" placeholder="Gerado automaticamente">
+                    </div>
                   </div>
-                  <div class="customer-message align-items-center">
-                    <a href="#">
-                      <div class="text-truncate message-title">Prefeitura de Picos-PI anuncia aumento nas passagens de ônibus
-                      </div>
-                      <div class="small text-gray-500 message-time">Riachão Net · 5h</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Vereadores se manifestam sobre as repercussões do aumento no transporte coletivo de Picos-PI
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Folha Atual · 5h</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Picos-PI Implementa Wi-Fi Gratuito para Melhorar Experiência dos Passageiros
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Folha Atual · 8h</div>
-                    </a>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">Ver mais <i
-                        class="fas fa-chevron-right"></i></a>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Cidade</label>
+                      <select id="cidade_base_id" class="cidades_select form-control">
+
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <div class="row">
+                  <div class="col">
+                    <h6 class="my-3 font-weight-bold text-primary">Ponto de partida</h6>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Cidade</label>
+                      <select id="ponto_origem_cidade_id" class="cidades_select form-control"></select>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="ponto_origem_bairro">Bairro</label>
+                          <input class="form-control" id="ponto_origem_bairro" />
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="ponto_origem_logradouro">Logradouro</label>
+                          <input class="form-control" id="ponto_origem_logradouro" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="ponto_origem_detalhes">Detalhes</label>
+                      <textarea class="form-control" id="ponto_origem_detalhes" rows="3"></textarea>
+                    </div>
+                  </div>
+
+
+                  <div class="col">
+                    <h6 class="my-3 font-weight-bold text-primary">Ponto de destino</h6>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Cidade</label>
+                      <select id="ponto_destino_cidade_id" class="cidades_select form-control"></select>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="ponto_destino_bairro">Bairro</label>
+                          <input class="form-control" id="ponto_destino_bairro" />
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="ponto_destino_logradouro">Logradouro</label>
+                          <input class="form-control" id="ponto_destino_logradouro" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="ponto_destino_detalhes">Detalhes</label>
+                      <textarea class="form-control" id="ponto_destino_detalhes" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" style="float: right;" class="btn btn-primary mt-4">Salvar</button>
+              </form>
             </div>
           </div>
-          <!--Row-->
 
           <!-- Modal Logout -->
           <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
@@ -351,10 +348,11 @@
       </div>
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
-
-        <div class="container my-auto py-2">
+        <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - Universidade Federal do Piauí
+            <span>copyright &copy;
+              <script> document.write(new Date().getFullYear()); </script> - developed by
+              <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
             </span>
           </div>
         </div>
@@ -373,6 +371,8 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.min.js"></script>
   <script src="js/ruang-admin.js"></script>
+  <script src="js/rota.js"></script>
+
 </body>
 
 </html>

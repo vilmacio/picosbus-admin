@@ -2,7 +2,7 @@
 (function ($) {
   "use strict"; // Start of use strict
 
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     if (!window.location.pathname.includes('login')) {
       console.log('verificando token...')
       const token = localStorage.getItem('pb-token')
@@ -99,3 +99,42 @@ version.innerHTML = "Version 1.1";
 
 
 // Tabela de rotas
+async function getData() {
+  const fetchResponse = await fetch('http://localhost:3000/api/rotas', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+
+  const data = await fetchResponse.json()
+
+  return data
+}
+
+async function mountTable() {
+  const routes = await getData()
+  
+  const table = document.getElementById("tabela_rotas");
+
+  routes.forEach(route => {
+
+    const row = table.insertRow();
+
+    const idCell = row.insertCell(0);
+    const cidadeCell = row.insertCell(1);
+    const startCell = row.insertCell(2);
+    const endCell = row.insertCell(3);
+    const statusCell = row.insertCell(4);
+    const actionCell = row.insertCell(5);
+
+    idCell.innerHTML = `<a href="#">${route.id}</a>`;
+    cidadeCell.innerHTML = `${route.cidade.nome} - ${route.cidade.uf}`;
+    startCell.innerHTML = route.ponto_origem.bairro;
+    endCell.innerHTML = route.ponto_destino.bairro;
+    statusCell.innerHTML = `<span class="badge badge-success">Ativo</span>`;
+    actionCell.innerHTML = `<a href="rota.html?id=${route.id}" class="btn btn-sm btn-primary">Detalhes</a>`;
+  })
+}
+
+mountTable()
